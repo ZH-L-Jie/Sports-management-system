@@ -1,0 +1,56 @@
+#spring:
+#  datasource:
+#    username: root
+#    password: root
+#    #?serverTimezone=UTC解决时区的报错
+#    url: jdbc:mysql://localhost:3306/pym_site?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&useSSL=false
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+server:
+  port: 8080
+#logging:
+#  level:
+#    com.site.mapper.*: trace
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/pym_site?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    #Spring Boot 默认是不注入这些属性值的，需要自己绑定
+    #druid 数郁源专有配置
+    initialsize: 5
+    minIdle: 5
+    maxActive: 20
+    maxwait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: SELECT 1 FROM DUAL
+    testwhileIdle: true
+    testonBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #配置脸控统计拦截fi让ters，stat：脸控统计、Log4j：月态记录、wall：防颜新l法入
+    #如果允许时报销 java.Lang.ClassNotFoundException:org.apache.Log4j.Priority
+    #则导入Log4j依费即可，Maven地量：https://munrepository.com/artifact/Log4j/Log4j
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowsqlMillis=5ee
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#      database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+#      show-sql: true
+#    hikari:
+#      minimum-idle: 10
+#      maximum-pool-size: 30
+#      connection-test-query: SELECT 1 FROM DUAL
+#      connection-timeout: 30000
+#      idleTimeout: 600000
+#server:
+#  port: 8081
+#      maxLifetime: 1800000
